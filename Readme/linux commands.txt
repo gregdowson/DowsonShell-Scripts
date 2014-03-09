@@ -1,0 +1,139 @@
+-passwd username -1 (Lock password)
+
+cat /etc/passwd  (Show users)
+
+more less gshadow  (Show groups)
+
+passwd username (change password)
+
+passwd -u username (unlock user account)
+
+userdel username (delete user)
+
+useradd username (add new user)
+
+useradd -G groupname username (add new user to a group)
+
+cd / (add existing user to a group)
+useradd -g groupname username (add existing user to a group)
+chage -d 0 username  (prompts user to change password upon login)
+
+rm filename  (deletes file)
+
+cp file1 file2 (overwrite file2 with file1)
+
+./script.sh  (run script)
+
+yum install ksh (installs Korn Shell)
+
+chmod a+x script.sh (grants execute permissions)
+
+Ctrl c (back to prompt)
+
+vim file.txt (create text file) :wq save/quit
+
+mv filename1 filename2  (rename 1 to 2)
+mv file.txt directory/
+mv directory directory/*.*
+sudo username - (switch user)
+
+sudo su - (switch to root)
+
+file /usr/bin/file (64 or 32 Bit)
+
+df -h    (disk info)
+
+service servicename restart  (restart service)
+
+locate audio (finds any file with audio in its name)
+
+rm -i filename.txt (delete file)
+
+su username (switch user)
+
+iptables --list (shows firewall rules)
+
+iptables -- flush   (flushes firewall rules)
+
+
+/sbin/ldconfig -p  (linux libraries)
+
+passwd -u username (unlock account)
+
+
+If you want to give read permissions, use the command:
+chmod 744 yourfile
+
+to give execute permissions*, use the command:
+chmod 755 yourfile
+
+to give read/write permissions, use the command:
+chmod 766 yourfile
+
+to give all permissions, use the command:
+chmod 777 yourfile
+
+find / -type d -iname 'directory name' (find directory)
+
+find / -name filename
+
+rm -rf (remove directory)
+
+
+tar xvzf *.tar.gz (unzip tar archive)
+
+As root, chown -R username.groupname dirname (change owner of directory)
+========================================================================================================
+Procedure to mount remote windows partition (NAS share):
+
+1) Make sure you have following information:
+==> Windows username and password to access share name
+==> Sharename (such as //server/share) or IP address
+==> root level access on Linux
+
+2) Login to Linux as a root user (or use su command)
+
+3) Create the required mount point:
+# mkdir -p /mnt/ntserver
+
+4) Use the mount command as follows:
+# mount -t cifs //ntserver/download -o username=vivek,password=myPassword /mnt/ntserver
+
+Use following command if you are using Old version such as RHEL <=4 or Debian <= 3:
+# mount -t smbfs -o username=vivek,password=D1W4x9sw //ntserver/download /mnt/ntserver
+
+5) Access Windows 2003/2000/NT share using cd and ls command:
+# cd /mnt/ntserver; ls -l
+
+Where,
+
+-t smbfs : File system type to be mount (outdated, use cifs)
+-t cifs : File system type to be mount
+-o : are options passed to mount command, in this example I had passed two options. First argument is password (vivek) and second argument is password to connect remote windows box
+//ntserver/download : Windows 2000/NT share name
+/mnt/ntserver Linux mount point (to access share after mounting)
+========================================================================================================
+
+To get external ip address use wget -qO- ifconfig.me/ip
+
+
+
+In this example copy /home/vivek/letters folder and all its files to /usb/backup directory:
+cp -avr /home/vivek/letters /usb/backup
+
+
+grep run-parts /etc/crontab (Tells when the chron jobs will run)
+
+
+Find the passwd file under root and two levels down. (i.e root — level 1, and two sub-directories — level 2 and 3 )
+
+# find / -maxdepth 3 -name passwd
+./usr/bin/passwd
+./etc/pam.d/passwd
+
+ 
+Task: List all your cron jobs
+Type the following command:
+# crontab -l
+# crontab -u username -l
+for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done
